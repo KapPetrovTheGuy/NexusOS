@@ -99,6 +99,11 @@ void keyboard_handler(REGISTERS *r) {
                 checkprogram();
                 break;
 
+            case SCAN_CODE_KEY_C:
+                program = FALSE;
+                checkprogram();
+                break;
+
             default:
                 program = FALSE;
                 break;
@@ -111,11 +116,12 @@ void checkprogram() {
     {
         vga_graphics_fill_rect(50, 22, 200, 175, WHITE);
         draw_string(50, 23, BLACK, "TITLE");
+        draw_string(50, 110, BLACK, "HELLO!");
     }
 
     else if (program == FALSE)
     {
-
+        vga_graphics_fill_rect(50, 22, 200, 175, BRIGHT_CYAN);
     }
 }
 
