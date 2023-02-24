@@ -80,7 +80,7 @@ void keyboard_handler(REGISTERS *r) {
         // key down
         switch(scancode) {
             case SCAN_CODE_KEY_CAPS_LOCK:
-                        vga_graphics_fill_rect(50, 22, 200, 175, BLUE);
+                vga_graphics_fill_rect(50, 22, 200, 175, BLUE);
                 break;
 
             case SCAN_CODE_KEY_ENTER:
@@ -115,8 +115,8 @@ void checkprogram() {
     if(program == TRUE)
     {
         vga_graphics_fill_rect(50, 22, 200, 175, WHITE);
-        draw_string(50, 23, BLACK, "TITLE");
-        draw_string(50, 110, BLACK, "HELLO!");
+        draw_string(50, 23, BLACK, "GUIDE");
+        draw_string(50, 110, BLACK, "Press C to close");
     }
 
     else if (program == FALSE)

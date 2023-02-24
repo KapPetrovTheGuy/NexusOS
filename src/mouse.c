@@ -93,7 +93,7 @@ int cpuid_info(int print) {
 enum vga_color back_color = BLACK;
 int reg = 0;
 void gui() {
-    //draw_string(20, 80, BRIGHT_MAGENTA, "Shhh Lets Not Leak Our Hard Work!");
+
 }
 
 void get_mouse_status(char status_byte, MOUSE_STATUS *status) {
