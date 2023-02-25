@@ -8,10 +8,12 @@
 #include "string.h"
 #include "bitmap.h"
 #include "vga.h"
+#include "mouse.h"
 
 static BOOL g_caps_lock = FALSE;
 static BOOL g_shift_pressed = FALSE;
 static BOOL program = FALSE;
+static BOOL nexver = FALSE;
 char g_ch = 0, g_scan_code = 0;
 
 // see scan codes defined in keyboard.h for index
@@ -94,35 +96,65 @@ void keyboard_handler(REGISTERS *r) {
             case SCAN_CODE_KEY_LEFT_SHIFT:
                 g_shift_pressed = TRUE;
                 break;
-            case SCAN_CODE_KEY_P:
+            case SCAN_CODE_KEY_G:
+                //refresh = FALSE;
                 program = TRUE;
                 checkprogram();
                 break;
 
+            case SCAN_CODE_KEY_N:
+                nexver = TRUE;
+                checknexver();
+                break;
+
             case SCAN_CODE_KEY_C:
                 program = FALSE;
+                nexver = FALSE;
                 checkprogram();
+                checknexver();
                 break;
 
             default:
-                program = FALSE;
                 break;
         }
     }
 }
 
 void checkprogram() {
+
     if(program == TRUE)
     {
         vga_graphics_fill_rect(50, 22, 200, 175, WHITE);
         draw_string(50, 23, BLACK, "GUIDE");
-        draw_string(50, 110, BLACK, "Press C to close");
+        draw_string(50, 110, BLACK, "Press C to close an app");
     }
 
     else if (program == FALSE)
     {
         vga_graphics_fill_rect(50, 22, 200, 175, BRIGHT_CYAN);
     }
+}
+
+void checknexver()
+{
+
+    if(nexver == TRUE)
+    {
+        vga_graphics_fill_rect(50, 22, 200, 200, WHITE);
+        draw_string(50, 23, BLACK, "NEXVER");
+        draw_string(50, 38, BLACK, "VERSION: NEXUS OS 2.0.2");
+    }
+
+    else if (nexver == FALSE)
+    {
+        vga_graphics_fill_rect(50, 22, 200, 175, BRIGHT_CYAN);
+    }
+}
+
+void check()
+{
+    checkprogram();
+    checknexver();
 }
 
 void keyboard_init() {

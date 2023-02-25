@@ -93,7 +93,12 @@ int cpuid_info(int print) {
 enum vga_color back_color = BLACK;
 int reg = 0;
 void gui() {
+    if (refresh == TRUE) {
+        vga_graphics_clear_color(BRIGHT_CYAN);
+    }
+    else if (refresh == FALSE) {
 
+    }
 }
 
 void get_mouse_status(char status_byte, MOUSE_STATUS *status) {
@@ -144,7 +149,6 @@ void mouse_handler(REGISTERS *r) {
             if (g_mouse_y_pos > VGA_MAX_HEIGHT)
                 g_mouse_y_pos = VGA_MAX_HEIGHT - 1;
 
-            vga_graphics_clear_color(BRIGHT_CYAN);
             gui();
             vga_graphics_fill_rect(g_mouse_x_pos, g_mouse_y_pos, 10, 10, BLACK);
             mouse_cycle = 0;

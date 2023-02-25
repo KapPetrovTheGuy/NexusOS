@@ -177,7 +177,7 @@ void vga_graphics_exit() {
 void vga_graphics_clear_color(uint8 color) {
     for (uint32 index = 0; index < VGA_MAX; index++)
         g_vga_buffer[index] = color;
-    checkprogram();
+    check();
 }
 
 void vga_graphics_putpixel(uint16 x, uint16 y, uint8 color) {
